@@ -1,4 +1,4 @@
-name: mytest
+name: test_trivy
 on:
  workflow_dispatch :
  
