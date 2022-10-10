@@ -1,24 +1,39 @@
-name: build
+name: mytest
 on:
  workflow_dispatch :
  
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build an image from Dockerfile
+        
+        
+      - name: Build an image from Dockerfile 1
         run: |
           docker pull nginx:latest
-          docker save -o vuln-image.tar nginx:latest
+          docker save -o vuln-image-nginx.tar nginx:latest
           
-      - name: Run Trivy vulnerability scanner in tarball mode
+      - name: Run Trivy vulnerability scanner in NGINX
         uses: aquasecurity/trivy-action@master
         with:
-          input: /github/workspace/vuln-image.tar
+          input: /github/workspace/vuln-image-nginx.tar
           severity: 'CRITICAL,HIGH'
+          
+      - name: Build an image from Dockerfile 2 
+        run: |
+         docker pull vulnerables/web-dvwa
+         docker save -o vuln-image-dvwa.tar vulnerables/web-dvwa
+         
+      - name: Run Trivy vunlerability scanner in DVWA
+        uses: aquasecurity/trivy-action@master
+        with: 
+         input: /github/workspace/vuln-image-dvwa.tar
+         severity: 'CRITICAL, HIGH'
+          
+          
           
           
