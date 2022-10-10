@@ -1,3 +1,1 @@
-name: mytest
-trivy image nginx:latest
-
+trivy nginx:latest
