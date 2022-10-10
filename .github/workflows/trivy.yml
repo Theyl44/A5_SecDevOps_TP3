@@ -33,7 +33,16 @@ jobs:
         with: 
          input: /github/workspace/vuln-image-dvwa.tar
          severity: 'CRITICAL,HIGH'
-          
-          
-          
-          
+         
+      - name: Build an image from Dockerfile 3 
+        run: |
+         docker pull  alpine:latest
+         docker save -o vuln-image-alpine.tar alpine:latest
+         
+      - name: Run Trivy vunlerability scanner in ALPINE
+        uses: aquasecurity/trivy-action@master
+        with: 
+         input: /github/workspace/vuln-image-alpine.tar
+         severity: 'CRITICAL,HIGH'
+         
+         
