@@ -13,7 +13,7 @@ jobs:
       - name: Build an image from Dockerfile
         run: |
           docker pull nginx:latest
-          docker save -o vul-img.tar nginx:latest
+          docker save -o vuln-image.tar nginx:latest
           
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
