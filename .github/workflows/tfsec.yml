@@ -1,19 +1,17 @@
-name: mytest_tfsec
-
+name: Security check - tfsec
 on:
- workflow_dispatch :
- 
-
+  workflow_dispatch:
+    branches:
+      - main
 jobs:
   tfsec:
-    name: Run tfsec sarif report
+    name: tfsec
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Clone repo
         uses: actions/checkout@master
-       
-      - name: Build an image from Dockerfile 1
+      - name: tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
         with:
           soft_fail: true
