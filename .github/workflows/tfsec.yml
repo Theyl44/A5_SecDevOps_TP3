@@ -11,8 +11,9 @@ jobs:
     
     steps:
       - name: Clone repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
        
       - name: Build an image from Dockerfile 1
-        uses: triat/terraform-security-scan@v3
-          
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          soft_fail: true
