@@ -1,8 +1,7 @@
 name: Security check - tfsec
 on:
   workflow_dispatch:
-    branches:
-      - main
+  
 jobs:
   tfsec:
     name: tfsec
